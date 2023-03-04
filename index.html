@@ -1,0 +1,81 @@
+<style>
+    .popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background-color: #fff;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.popup p {
+  margin-bottom: 20px;
+}
+
+.open-button {
+  margin-right: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+</style>
+
+
+<button class="open-button">Open Pop-up 1</button>
+<div class="popup">
+  <p>Pop-up 1 content goes here.</p>
+  <button class="close-button">Close</button>
+</div>
+
+<button class="open-button">Open Pop-up 2</button>
+<div class="popup">
+  <p>Pop-up 2 content goes here.</p>
+  <button class="close-button">Close</button>
+</div>
+
+<button class="open-button">Open Pop-up 3</button>
+<div class="popup">
+  <p>Pop-up 3 content goes here.</p>
+  <button class="close-button">Close</button>
+</div>
+
+<script>
+    const openButtons = document.querySelectorAll('.open-button');
+const popups = document.querySelectorAll('.popup');
+const closeButtons = document.querySelectorAll('.close-button');
+
+let currentPopupIndex = 0;
+
+function openPopup(index) {
+  popups[index].style.display = 'block';
+}
+
+function closePopup(index) {
+  popups[index].style.display = 'none';
+}
+
+openButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    openPopup(index);
+    currentPopupIndex = index;
+  });
+});
+
+closeButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    closePopup(index);
+    currentPopupIndex++;
+    if (currentPopupIndex < popups.length) {
+      openPopup(currentPopupIndex);
+    }
+  });
+});
+</script>
